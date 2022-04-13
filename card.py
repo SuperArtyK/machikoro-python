@@ -1,3 +1,9 @@
+#card ids
+#game card = 1
+#attractions = 2
+#just card = 0
+
+CARD_TYPE_ID = 0
 
 #card class
 #base class of all game cards
@@ -7,7 +13,6 @@ class Card:
 		self.m_sName = l_sname
 		self.m_sDesc = l_sdesc
 		self.m_iType = l_itype
-		self.m_iID = 0
 		
 	def __str__(self):
 		return ("Card Title: %s\nDescription: %s" % (self.m_sName, self.m_sDesc))

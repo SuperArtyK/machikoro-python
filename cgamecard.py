@@ -3,10 +3,10 @@ from card import *
 
 #kludge for flags and macros
 #instead of preprocessor
-#card exec types
-GCARD_EXEC_OTHER_TURN = 0
-GCARD_EXEC_ANY_TURN = 1
-GCARD_EXEC_YOUR_TURN = 2
+#card  types
+GCARD_RESTAURANTS = 0 
+GCARD_PRIMARY = 1
+GCARD_SECONDARY = 2
 
 #card type id
 GCARD_TYPE_ID = 1
@@ -15,36 +15,32 @@ GCARD_TYPE_ID = 1
 #card execution order: any turn; 
 class GameCard(Card):
 	#args: self, (str)name of card, (str)description of card, (int)execution type of card, (list of 2 int) execution dice roll
-	def __init__(self, l_sname, l_sdesc, l_iGCType, l_idiceRoll, l_iID):
-		self = Card(l_sname, l_sdesc, GAME_CARD_TYPE_ID)
+	def __init__(self, l_sname, l_sdesc, l_iGCType, l_idiceRoll):
+		super(GameCard, self).__init__(l_sname, l_sdesc, GCARD_TYPE_ID)
 		self.m_iDiceRoll = l_idiceRoll
 		self.m_iGCType = l_iGCType
-		self.m_iID = l_iID
 	#declare a cardaction fn in each class inherited
 	#args are: self and obj of Player
 	def cardaction(self, plr):
 		print("call to GameCard::cardaction(plr)")
 	
 	def typeToStr(self):
-		if(self.m_iType == CARD_TYPE_ANY_TURN):
+		if(self.m_iType == GCARD_PRIMARY):
 			return "Any turn"
-		if(self.m_iType == CARD_TYPE_YOUR_TURN):
+		if(self.m_iType == GCARD_SECONDARY):
 			return "Only your turn"
-		if(self.m_iType == CARD_TYPE_OTHER_TURN):
+		if(self.m_iType == GCARD_RESTAURANTS):
 			return "Only other player's turn"
 	
 	def __str__(self):
-		return ("Card Title: %s\nDescription: %s\nActivates at: %s, when dice value is %d" % (self.m_sName,self.m_sDesc,self.typeToStr(), self.m_iDiceRoll))
+		return ("Card Title: %s\nDescription: %s\nActivates at: %s, when dice value is %s" % (self.m_sName,self.m_sDesc,self.typeToStr(), "-".join(self.m_iDiceRoll)))
 
+class GCPrimary(GameCard):
+	def __init__(self, l_sname, l_sdesc, l_idiceRoll):
+		super(GCPrimary, self).__init__(l_sname, l_sdesc, GCARD_PRIMARY, l_idiceRoll)
 
-GCARD_ID_NONE = 0 #dice: 0
-GCARD_ID_SUSHI_BAR = 1 #1 other
-GCARD_ID_WHEAT_FIELD = 2 #1 any
-GCARD_ID_FARM = 3 #2 any
-GCARD_ID_BAKERY = 4 #2-3 your
-GCARD_ID_CAFE = 5 #3 other
-GCARD_ID_FLOWER_GARDEN = 6 #4 any
-GCARD_ID_SHOP = 7 #4 your
-GCARD_ID_FOREST = 8 #5 any
-
+	#declare a cardaction fn in each class inherited
+	#args are: self and obj of Player
+	def cardaction(self, plr):
+		print("call to GCPrimary::cardaction(plr)")
 
