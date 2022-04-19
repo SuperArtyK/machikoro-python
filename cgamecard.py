@@ -36,7 +36,7 @@ class GameCard(Card):
 			return "Only other player's turn"
 	
 	def __str__(self):
-		return ("Card Title: %s\nDescription: %s\nActivates at: %s, when dice value is %d-%d" % (self.m_sName,self.m_sDesc,self.typeToStr(), self.m_iDiceRoll[0], self.m_iDiceRoll[1]))
+		return ("-Card Title: %s\n-Description: %s\n-Activates at: %s, when dice value is %d-%d\n-Costs: %d coins\n-From Harbor Expansion: %r" % (self.m_sName,self.m_sDesc,self.typeToStr(), self.m_iDiceRoll[0], self.m_iDiceRoll[1], self.m_iPrice, self.m_bHarborExpansion))
 
 
 
@@ -57,7 +57,7 @@ class GCPrimary(GameCard):
 		for o in plr.m_lCards[GCARD_PRIMARY]:
 			if(type(o) == type(card) ):
 				plr.m_iCoins += o.m_iAmount * card.m_iIncome
-				print("%s recieves %d coin(s) for %d %s(s)! (Total: %d)" % (plr.m_sName, o.m_iAmount * card.m_iIncome, o.m_iAmount, card.m_sName, plr.m_iCoins))
+				print("Player %s recieves %d coin(s) for %d %s(s)! (Total: %d)" % (plr.m_sName, o.m_iAmount * card.m_iIncome, o.m_iAmount, card.m_sName, plr.m_iCoins))
 				return
 		printd("%s doesnt have %s(s)! Why did you even called this function, if it's not going to do anything, you stu..." % (plr.m_sName, card.m_sName))
 
@@ -82,6 +82,6 @@ class GCSecondary(GameCard):
 					print("%s recieves %d coin(s) for %d %s(s) with Shopping Mall! (Total: %d)" % (plr.m_sName, o.m_iAmount * (card.m_iIncome+1), o.m_iAmount, card.m_sName, plr.m_iCoins))
 				else:
 					plr.m_iCoins += o.m_iAmount * card.m_iIncome
-					print("%s recieves %d coin(s) for %d %s(s)! (Total: %d)" % (plr.m_sName, o.m_iAmount * card.m_iIncome, o.m_iAmount, card.m_sName, plr.m_iCoins))
+					print("Player %s recieves %d coin(s) for %d %s(s)! (Total: %d)" % (plr.m_sName, o.m_iAmount * card.m_iIncome, o.m_iAmount, card.m_sName, plr.m_iCoins))
 				return
 		printd("%s doesnt have %s(s)! Why did you even called this function, if it's not going to do anything, you stu..." % (plr.m_sName, card.m_sName))

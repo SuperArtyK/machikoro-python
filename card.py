@@ -1,10 +1,4 @@
-
-DEBUG = True
-def printd(s):
-    if(DEBUG):
-        print("DEBUG::" + s)
-
-
+from debugprint import *
 #card ids
 #game card = 1
 #attractions = 2
@@ -22,13 +16,13 @@ class Card:
 		self.m_sName = l_sname
 		self.m_sDesc = l_sdesc
 		self.m_iType = l_itype
-		self.m_bHarborExpansin = l_bHarborExpansion
+		self.m_bHarborExpansion = l_bHarborExpansion
 		self.m_iAmount = 1
 		self.m_iMaxAmount = l_iMaxAmount
 		self.m_iPrice = l_iPrice
 		
 	def __str__(self):
-		return ("Card Title: %s\nDescription: %s" % (self.m_sName, self.m_sDesc))
+		return ("!Card Title: %s\n!Description: %s\n!From Harbor Expansion: %r" % (self.m_sName, self.m_sDesc, self.m_bHarborExpansion))
 
 
 

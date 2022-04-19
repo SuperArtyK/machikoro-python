@@ -4,10 +4,15 @@ from cwheat import *
 from clandmarks import *
 
 #class of player that posesses the cards themselves
+
+_PLAYER_COUNT = 0
+
 class Player:
     
-	def __init__(self, l_sname):
-		self.m_sName = l_sname
+	def __init__(self, l_sName):
+		printd("Creating player %s" % (l_sName))
+		global _PLAYER_COUNT
+		self.m_sName = l_sName
 		#list lists, each sublist indicates GameCard type, such as GCARD_PRIMARY, ~SECONDARY, etc
 		#each sublist contains already built cards
 		self.m_lCards = [ [], [], [], [] ]
@@ -16,14 +21,19 @@ class Player:
 		#City Hall, Harbor, Train Station, Shopping Mall, Amusement Park, Radio Tower, Airport
 		#City hall is always built, from start
 		self.m_lLandmarks = [True, False, False, False, False, False, False]
-		
+		_PLAYER_COUNT +=1
+		#TODO:Add bakery here!
+		printd("Adding default cards to player: City Hall 1x; Wheat Field 1x")
+		self.addcard(CCityHall(), True)
+		self.addcard(CWheatField(), True)
+		print("Player %s has entered the game! (Total: %d players)" % (self.m_sName, _PLAYER_COUNT))
   
   
 	#add card to the list
 	#args: self, Card object
-	def addcard(self, card):
-		print("Entered addcard")
-		print("Card is: "+card.m_sName)
+	def addcard(self, card:Card, bDontCreate = False):
+		printd("Entered addcard")
+		printd("Card is: "+card.m_sName)
 		if(card.m_iType == CARD_TYPE_LANDMARK):
 			printd("Instance of landmark")
 			#TODO: change from 'type() ==' to landmark.id check in m_lLandmarks
@@ -31,10 +41,13 @@ class Player:
 				if(type(o) == type(card)):
 					print("You cannot build more than 1 same landmark!")
 					return
-			self.m_lLandmarks.append(card)
+			if(bDontCreate):
+				self.m_lLandmarks.append(card)
+			else:
+				self.m_lLandmarks.append(card.__class__())
 		elif(card.m_iType == CARD_TYPE_GAMECARD):
 			printd("Instance of gamecard")
-			printd("gamecard type: %d" % (card.m_iGCType))
+			printd("gamecard type: %s" % (card.typeToStr()))
 			#check if card is major, same outcome as landmarks
 			for o in self.m_lCards[card.m_iGCType]:
 				printd("Checking types; card: %s; cardlist[gctype][i]: %s" % (type(card).__name__, type(o).__name__))
