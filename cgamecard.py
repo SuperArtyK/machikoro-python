@@ -1,4 +1,5 @@
 from card import *
+from eventprint import *
 
 
 #kludge for flags and macros
@@ -25,7 +26,7 @@ class GameCard(Card):
 	#declare a cardaction fn in each class inherited
 	#args are: self and obj of Player
 	def cardaction(self, plr):
-		print("call to GameCard::cardaction(plr)")
+		printd("call to GameCard::cardaction(plr)")
 	
 	def typeToStr(self):
 		if(self.m_iType == GCARD_PRIMARY):
@@ -36,7 +37,7 @@ class GameCard(Card):
 			return "Only other player's turn"
 	
 	def __str__(self):
-		return ("-Card Title: %s\n-Description: %s\n-Activates at: %s, when dice value is %d-%d\n-Costs: %d coins\n-From Harbor Expansion: %r" % (self.m_sName,self.m_sDesc,self.typeToStr(), self.m_iDiceRoll[0], self.m_iDiceRoll[1], self.m_iPrice, self.m_bHarborExpansion))
+		return ("Game Card Title: %s\nDescription: %s\nActivates at: %s, when dice value is %d-%d\nCosts: %d coins\nFrom Harbor Expansion: %r" % (self.m_sName,self.m_sDesc,self.typeToStr(), self.m_iDiceRoll[0], self.m_iDiceRoll[1], self.m_iPrice, self.m_bHarborExpansion))
 
 
 
@@ -57,7 +58,7 @@ class GCPrimary(GameCard):
 		for o in plr.m_lCards[GCARD_PRIMARY]:
 			if(type(o) == type(card) ):
 				plr.m_iCoins += o.m_iAmount * card.m_iIncome
-				print("Player %s recieves %d coin(s) for %d %s(s)! (Total: %d)" % (plr.m_sName, o.m_iAmount * card.m_iIncome, o.m_iAmount, card.m_sName, plr.m_iCoins))
+				printe("Player %s recieves %d coin(s) for %d %s(s)! (Total: %d)" % (plr.m_sName, o.m_iAmount * card.m_iIncome, o.m_iAmount, card.m_sName, plr.m_iCoins), MEVENT_ADD_COINS)
 				return
 		printd("%s doesnt have %s(s)! Why did you even called this function, if it's not going to do anything, you stu..." % (plr.m_sName, card.m_sName))
 
@@ -79,9 +80,9 @@ class GCSecondary(GameCard):
 			if(type(o) == type(card)):
 				if(plr.m_lLandmanrs[3] and card.m_bShopAffected):
 					plr.m_iCoins += o.m_iAmount * (card.m_iIncome+1)
-					print("%s recieves %d coin(s) for %d %s(s) with Shopping Mall! (Total: %d)" % (plr.m_sName, o.m_iAmount * (card.m_iIncome+1), o.m_iAmount, card.m_sName, plr.m_iCoins))
+					printe("%s recieves %d coin(s) for %d %s(s) with Shopping Mall! (Total: %d)" % (plr.m_sName, o.m_iAmount * (card.m_iIncome+1), o.m_iAmount, card.m_sName, plr.m_iCoins), MEVENT_ADD_COINS)
 				else:
 					plr.m_iCoins += o.m_iAmount * card.m_iIncome
-					print("Player %s recieves %d coin(s) for %d %s(s)! (Total: %d)" % (plr.m_sName, o.m_iAmount * card.m_iIncome, o.m_iAmount, card.m_sName, plr.m_iCoins))
+					printe("Player %s recieves %d coin(s) for %d %s(s)! (Total: %d)" % (plr.m_sName, o.m_iAmount * card.m_iIncome, o.m_iAmount, card.m_sName, plr.m_iCoins), MEVENT_ADD_COINS)
 				return
 		printd("%s doesnt have %s(s)! Why did you even called this function, if it's not going to do anything, you stu..." % (plr.m_sName, card.m_sName))

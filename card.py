@@ -22,7 +22,7 @@ class Card:
 		self.m_iPrice = l_iPrice
 		
 	def __str__(self):
-		return ("!Card Title: %s\n!Description: %s\n!From Harbor Expansion: %r" % (self.m_sName, self.m_sDesc, self.m_bHarborExpansion))
+		return ("Card Title: %s\nDescription: %s\nFrom Harbor Expansion: %r" % (self.m_sName, self.m_sDesc, self.m_bHarborExpansion))
 
 
 

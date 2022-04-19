@@ -1,5 +1,6 @@
+#contains code for debug printing and flag
 
-DEBUG = True
+DEBUG = False
 def printd(s):
     if(DEBUG):
         print("DEBUG::" + s)
