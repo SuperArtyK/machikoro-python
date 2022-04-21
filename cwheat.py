@@ -14,5 +14,5 @@ class CWheatField(GCPrimary):
 			[1,1], 1, False, 1, "+1 coin")
 
 		
-	def cardaction(self, plr):
-		super().cardaction(plr, self)
+	def cardAction(self, plr):
+		super().cardAction(plr, self)

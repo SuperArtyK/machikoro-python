@@ -12,17 +12,20 @@ LANDMARK_ID_AMUSEMENTPARK = 4
 LANDMARK_ID_RADIOTOWER = 5
 LANDMARK_ID_AIRPORT = 6
 
-
+#base landmark class
 class CLandmark(Card):
 	def __init__(self, l_sname, l_sdesc, l_bHarborExpansion, l_iPrice, l_iID, l_sShortDesc):
 		#idk how to use max limit of 5 cards, player discards 2nd same landmark anyway.
 		super().__init__(l_sname, l_sdesc, CARD_TYPE_LANDMARK, l_bHarborExpansion, 5, l_iPrice, l_sShortDesc)
 		self.m_iID = l_iID
 		printd("Creating CLandmark() ->  %s" % (l_sname))
-		
 
 	def __str__(self):
 		return ("Landmark Title: %s\nDescription: %s\nCosts: %d coins\nFrom Harbor Expansion: %r" % (self.m_sName, self.m_sDesc, self.m_iPrice, self.m_bHarborExpansion))
+
+
+
+#landmarks
 
 class CCityHall(CLandmark):
 	def __init__(self):

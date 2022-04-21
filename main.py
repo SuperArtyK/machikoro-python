@@ -4,7 +4,7 @@
 from player import *
 from eventprint import *
 
-
+#TODO:Change in-game phrase 'gamecard' to 'establishment' where possible
 
 print("Welcome to Machi-koro!\nOriginal game created by Masao Suganuma, port to console by Artemii Kozhemiak.\n")
 print("Lines indented with:\n'L ' indicate landmark cards\n'G ' indicate regular game cards\n'C+ ' indicate adding card to player\n'C- ' indicate removing card from player")
@@ -26,12 +26,13 @@ printe(card)
 plr = Player("artyk")
 plr2 = Player("artyk2")
 printe(card)
-plr.addcard(card)
-plr.addcard(card)
-plr.addcard(tmp[0])
-card.cardaction(plr)
+plr.addCard(card)
+plr.addCard(card)
+plr.addCard(tmp[0])
+card.cardAction(plr)
 print('\n')
-plr.listcards(0)
 
+#print(plr.hasCard(getLandmarkDeck()[0]))
+plr.listCards(22)
 print('-----------------')
-listdeck()
+#listDeck(None, 30)

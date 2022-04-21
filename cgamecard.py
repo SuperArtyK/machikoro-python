@@ -5,10 +5,11 @@ from eventprint import *
 #kludge for flags and macros
 #instead of preprocessor
 #card  types
-GCARD_RESTAURANTS = 0 
-GCARD_PRIMARY = 1
-GCARD_SECONDARY = 2
-GCARD_MAJOR = 3
+GAMECARD_ID_RESTAURANTS = 0 
+GAMECARD_ID_PRIMARY = 1
+GAMECARD_ID_SECONDARY = 2
+GAMECARD_ID_MAJOR = 3
+GAMECARD_NAMES = ["Restaurant", "Primary Establishment", "Secondary Establishment", "Major Establishment", ]
 
 #card type id
 CARD_TYPE_GAMECARD = 1
@@ -23,17 +24,18 @@ class GameCard(Card):
 		printd("Creating GameCard() ->  %s" % (l_sname))
 		self.m_lDiceRoll = l_lDiceRoll
 		self.m_iGCType = l_iGCType
+	
 	#declare a cardaction fn in each class inherited
 	#args are: self and obj of Player
-	def cardaction(self, plr):
+	def cardAction(self, plr):
 		printd("call to GameCard::cardaction(plr)")
 	
 	def typeToStr(self):
-		if(self.m_iType == GCARD_PRIMARY):
+		if(self.m_iType == GAMECARD_ID_PRIMARY):
 			return "Any turn"
-		if(self.m_iType == GCARD_SECONDARY or self.m_iType == GCARD_MAJOR):
+		if(self.m_iType == GAMECARD_ID_SECONDARY or self.m_iType == GAMECARD_ID_MAJOR):
 			return "Only your turn"
-		if(self.m_iType == GCARD_RESTAURANTS):
+		if(self.m_iType == GAMECARD_ID_RESTAURANTS):
 			return "Only other player's turn"
 	
 	def __str__(self):
@@ -44,7 +46,7 @@ class GameCard(Card):
 
 class GCPrimary(GameCard):
 	def __init__(self, l_sname, l_sdesc, l_idiceRoll, l_iIncome, l_bHarborExpansion, l_iPrice, l_sShortDesc):
-		super(GCPrimary, self).__init__(l_sname, l_sdesc, GCARD_PRIMARY, l_idiceRoll, l_bHarborExpansion, 6, l_iPrice, l_sShortDesc)
+		super(GCPrimary, self).__init__(l_sname, l_sdesc, GAMECARD_ID_PRIMARY, l_idiceRoll, l_bHarborExpansion, 6, l_iPrice, l_sShortDesc)
 		printd("Creating GCPrimary() ->  %s" % (l_sname))
 		self.m_iIncome = l_iIncome
 
@@ -52,10 +54,10 @@ class GCPrimary(GameCard):
 	#args are: self and obj of Player
 
 	
-	def cardaction(self, plr, card):
+	def cardAction(self, plr, card):
 		
 		printd("call to GCPrimary::cardaction()")
-		for o in plr.m_lCards[GCARD_PRIMARY]:
+		for o in plr.m_lCards[GAMECARD_ID_PRIMARY]:
 			if(type(o) == type(card) ):
 				plr.m_iCoins += o.m_iAmount * card.m_iIncome
 				printe("Player %s recieves %d coin(s) for %d %s(s)! (Total: %d)" % (plr.m_sName, o.m_iAmount * card.m_iIncome, o.m_iAmount, card.m_sName, plr.m_iCoins), MEVENT_ADD_COINS)
@@ -64,7 +66,7 @@ class GCPrimary(GameCard):
 
 class GCSecondary(GameCard):
 	def __init__(self, l_sname, l_sdesc, l_idiceRoll, l_iIncome, l_bHarborExpansion, l_bShopAffected, l_iPrice, l_sShortDesc):
-		super(GCSecondary, self).__init__(l_sname, l_sdesc, GCARD_PRIMARY, l_idiceRoll, l_bHarborExpansion, 6, l_iPrice, l_sShortDesc)
+		super(GCSecondary, self).__init__(l_sname, l_sdesc, GAMECARD_ID_PRIMARY, l_idiceRoll, l_bHarborExpansion, 6, l_iPrice, l_sShortDesc)
 		printd("Creating GCSecondary() ->  %s" % (l_sname))
 		self.m_iIncome = l_iIncome
 		#if shopping mall landmark affects the card
@@ -74,9 +76,9 @@ class GCSecondary(GameCard):
 	#args are: self and obj of Player
 
 	
-	def cardaction(self, plr, card):		
+	def cardAction(self, plr, card):		
 		printd("call to GCSecondary::cardaction()")
-		for o in plr.m_lCards[GCARD_PRIMARY]:
+		for o in plr.m_lCards[GAMECARD_ID_PRIMARY]:
 			if(type(o) == type(card)):
 				if(plr.m_lLandmanrs[3] and card.m_bShopAffected):
 					plr.m_iCoins += o.m_iAmount * (card.m_iIncome+1)

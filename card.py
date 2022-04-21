@@ -42,16 +42,17 @@ if main player has 0 coins, skip paying players and start recieving
 Order: same as turn order(doesnt matter!)
 then we prompt to buy cards. Display previously bought card and how much left. Display current coin amount
 
-Commands: 
+Any-time commands, can be typed instead of the prompt answer: 
 
 show(any time): list of all cards and their status, all game cards, all landmarks,
 all unbuilt cards, unbuilt game cards, unbuilt landmarks, each opponents' cards, 
 1 opponent's cards, unbuilt cards/gamecards/landmarks of opponent,
-coin amount of active player, coin amount of 1/each opponent, dice roll amount
+coin amount of active player, coin amount of 1/each opponent, dice roll amount,
+legend, player info, info of card
 
-roll the dice: roll 1 die, roll 2 dice, remember dice rolling amount, auto-roll
-
-buy: buy card, buy landmark, buy gamecard; by name/number(previous list)
+infocard <card id>/<partial/full name> landmark/gamecard(to use landmark or gamecard id)  -- detailed description of card
+infoplayer <plr #>/<partial/fuil name>  -- detailed description of player(except card list)
+legend <prefix name> -- show prefix legend/optionally show description of 1 line prefix
 
 
 
