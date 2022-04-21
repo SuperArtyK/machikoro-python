@@ -135,7 +135,7 @@ def listDeck(plr:Player = None, iType = 0):
 			for i in range(len(_CARD_DECK)):
 				#kludge for padding
 				#card name + 27-length
-				printe("%2d: %s;%sActivation:%2d-%d,%sCost:%2d, Type:%s Description: %s" % 
+				printe("%2d: %s;%sActivation:%2d-%d,%sCost:%2d, Type:%s, Description: %s" % 
 						(i+1, _CARD_DECK[i].m_sName, ' '*(27-len(_CARD_DECK[i].m_sName)), _CARD_DECK[i].m_lDiceRoll[0], _CARD_DECK[i].m_lDiceRoll[1],
 						#now THIS is a kludge. convert number to a string and then calculate it's length
 						" "*len(str(_CARD_DECK[i].m_lDiceRoll[1])), 
@@ -148,7 +148,7 @@ def listDeck(plr:Player = None, iType = 0):
 				if(_CARD_DECK[i].m_iGCType == (int(iType[0])-3)):
 					#kludge for padding
 					#card name + 27-length
-					printe("%2d: %s;%sActivation:%2d-%d,%sCost:%2d, Type:%s Description: %s" % 
+					printe("%2d: %s;%sActivation:%2d-%d,%sCost:%2d, Type:%s, Description: %s" % 
 							(i+1, _CARD_DECK[i].m_sName, ' '*(27-len(_CARD_DECK[i].m_sName)), _CARD_DECK[i].m_lDiceRoll[0], _CARD_DECK[i].m_lDiceRoll[1],
 							#now THIS is a kludge. convert number to a string and then calculate it's length
 							" "*len(str(_CARD_DECK[i].m_lDiceRoll[1])), 
@@ -202,7 +202,7 @@ def listDeck(plr:Player = None, iType = 0):
 					#kludge for padding
 					#card name + 27-length
 					if(not plr.hasCard(_CARD_DECK[i])):
-						printe("%2d: %s;%sActivation:%2d-%d,%sCost:%2d, Type:%s Description: %s" % 
+						printe("%2d: %s;%sActivation:%2d-%d,%sCost:%2d, Type:%s, Description: %s" % 
 								(i+1, _CARD_DECK[i].m_sName, ' '*(27-len(_CARD_DECK[i].m_sName)), _CARD_DECK[i].m_lDiceRoll[0], _CARD_DECK[i].m_lDiceRoll[1],
 								#now THIS is a kludge. convert number to a string and then calculate it's length
 								" "*len(str(_CARD_DECK[i].m_lDiceRoll[1])), 
@@ -217,7 +217,7 @@ def listDeck(plr:Player = None, iType = 0):
 						printe(" 0: None", MEVENT_GAMECARD)
 						continue
 					for i in range(len(plr.m_lCards[o])):
-						printe("%2d: %s;%sActivation:%2d-%d,%sCost:%2d, Type:%s Description: %s" % 
+						printe("%2d: %s;%sActivation:%2d-%d,%sCost:%2d, Type:%s, Description: %s" % 
 								(i+1, plr.m_lCards[o][i].m_sName, ' '*(27-len(plr.m_lCards[o][i].m_sName)), plr.m_lCards[o][i].m_lDiceRoll[0], plr.m_lCards[o][i].m_lDiceRoll[1],
 								#now THIS is a kludge. convert number to a string and then calculate it's length
 								" "*len(str(plr.m_lCards[o][i].m_lDiceRoll[1])), 
