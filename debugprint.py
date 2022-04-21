@@ -1,6 +1,6 @@
 #contains code for debug printing and flag
 
-DEBUG = False
+_DEBUG = True
 def printd(s):
-    if(DEBUG):
+    if(_DEBUG):
         print("DEBUG::" + s)

@@ -30,3 +30,8 @@ plr.addcard(card)
 plr.addcard(card)
 plr.addcard(tmp[0])
 card.cardaction(plr)
+print('\n')
+plr.listcards(0)
+
+print('-----------------')
+listdeck()

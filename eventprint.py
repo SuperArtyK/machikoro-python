@@ -1,20 +1,20 @@
 #contains code for printing text bound to certain events
 
 #MEvent - machi-koro event
-MEVENT_NONE = -1
-MEVENT_GENERAL = 0
-MEVENT_LANDMARK_DESC = 1
-MEVENT_GAMECARD_DESC = 2
-MEVENT_CARD_DESC = 3
-MEVENT_ADD_CARD = 4
-MEVENT_REMOVE_CARD = 5
-MEVENT_ADD_COINS = 6
-MEVENT_REMOVE_COINS = 7 #pay, to player or to bank
-MEVENT_ADD_PLAYER = 8
-MEVENT_LANDMARK = 9
-MEVENT_GAMECARD = 10
-MEVENT_CARD = 11
-MEVENT_ERROR = 12 #error of PLAYER, not program
+MEVENT_NONE = -1 #''
+MEVENT_GENERAL = 0 #'    '
+MEVENT_LANDMARK_DESC = 1 # 'LD  '
+MEVENT_GAMECARD_DESC = 2 # 'GD  '
+MEVENT_CARD_DESC = 3 # 'CD  '
+MEVENT_ADD_CARD = 4 # '+C  '
+MEVENT_REMOVE_CARD = 5 # '-C  '
+MEVENT_ADD_COINS = 6 # '++  '
+MEVENT_REMOVE_COINS = 7 # '--  ' 	;pay, to player or to bank
+MEVENT_ADD_PLAYER = 8 # '+P  '
+MEVENT_LANDMARK = 9 # 'L   '
+MEVENT_GAMECARD = 10 # 'G   '
+MEVENT_CARD = 11 # 'C   '
+MEVENT_ERROR = 12 # '!! ';    error of a PLAYER, not program
 
 #event printing
 #args: text string and event type int
@@ -47,8 +47,27 @@ def printe(s, e = MEVENT_NONE):
 	elif(e == MEVENT_CARD):
 		r = 'C   '
 	elif(e == MEVENT_ERROR):
-		r = '!!   '
-	else:
-		r = ''
+		r = '!!  '
 	
 	print((r+str(s)).replace('\n', '\n'+r))
+
+"""
+Line prefix legend:
+
+'    ' -- Normal line
+'LD  ' -- Detailed description of the landmark card
+'GD  ' -- Detailed description of the game card
+'CD  ' -- Detailed description of the just the card
+'+C  ' -- Adding card to player. EX: when bought
+'-C  ' -- Removing card from player, when exchanged
+'++  ' -- Player recieves coins
+'--  ' -- Player pays with coins
+'+P  ' -- Player is added to the game
+'L   ' -- Short description of the landmark card
+'G   ' -- Short description of the game card
+'C   ' -- Short description of the game card
+(shown when listing whole card deck or player cards)
+'!!  ' -- 
+
+
+"""

@@ -11,7 +11,7 @@ from debugprint import *
 #base class of all game cards
 class Card:
 	#self, card name, card description, card execution type, execution dice roll, is card from advanced set
-	def __init__(self, l_sname, l_sdesc, l_itype, l_bHarborExpansion, l_iMaxAmount, l_iPrice):
+	def __init__(self, l_sname, l_sdesc, l_itype, l_bHarborExpansion, l_iMaxAmount, l_iPrice, l_sShortDesc):
 		printd("Creating Card() ->  %s" % (l_sname))
 		self.m_sName = l_sname
 		self.m_sDesc = l_sdesc
@@ -20,6 +20,7 @@ class Card:
 		self.m_iAmount = 1
 		self.m_iMaxAmount = l_iMaxAmount
 		self.m_iPrice = l_iPrice
+		self.m_sShortDesc = l_sShortDesc
 		
 	def __str__(self):
 		return ("Card Title: %s\nDescription: %s\nFrom Harbor Expansion: %r" % (self.m_sName, self.m_sDesc, self.m_bHarborExpansion))
