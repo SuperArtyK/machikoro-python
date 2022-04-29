@@ -33,6 +33,6 @@ card.cardAction(plr)
 print('\n')
 
 #print(plr.hasCard(getLandmarkDeck()[0]))
-plr.listCards(22)
+plr.listCards(6)
 print('-----------------')
-#listDeck(None, 30)
+#listDeck(None, '40')

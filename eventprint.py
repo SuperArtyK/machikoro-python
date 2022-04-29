@@ -3,17 +3,17 @@
 #MEvent - machi-koro event
 MEVENT_NONE = -1 #''
 MEVENT_GENERAL = 0 #'    '
-MEVENT_LANDMARK_DESC = 1 # 'LD  '
+MEVENT_CARD_DESC = 1 # 'CD  '
 MEVENT_GAMECARD_DESC = 2 # 'GD  '
-MEVENT_CARD_DESC = 3 # 'CD  '
+MEVENT_LANDMARK_DESC = 3 # 'LD  '
 MEVENT_ADD_CARD = 4 # '+C  '
 MEVENT_REMOVE_CARD = 5 # '-C  '
 MEVENT_ADD_COINS = 6 # '++  '
 MEVENT_REMOVE_COINS = 7 # '--  ' 	;pay, to player or to bank
 MEVENT_ADD_PLAYER = 8 # '+P  '
-MEVENT_LANDMARK = 9 # 'L   '
+MEVENT_CARD = 9 # 'C   ''
 MEVENT_GAMECARD = 10 # 'G   '
-MEVENT_CARD = 11 # 'C   '
+MEVENT_LANDMARK = 11 # 'L   '
 MEVENT_ERROR = 12 # '!! ';    error of a PLAYER, not program
 
 #event printing
