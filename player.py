@@ -23,7 +23,9 @@ def isCardInList(itm, lst):
 	#or whatever, list with lists
 	if(len(lst)):
 		if(isinstance(lst[0], list)):
-			return 
+			for o in lst:
+				if(isCardInList(itm, o)):
+					return True
 		else:
 			for o in lst:
 				if o.m_iType == itm.m_iType and o.m_iID == itm.m_iID:
