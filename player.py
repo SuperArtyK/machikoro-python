@@ -9,7 +9,7 @@ from eventprint import *
 #internal use only: player count
 _PLAYER_COUNT = 0
 #internal use only: deck of all cards in the game
-_GAMECARD_DECK = [CWheatField()]
+_GAMECARD_DECK = [CWheatField(), CRanch(), CFlowerOrchard()]
 _LANDMARK_DECK = [CCityHall(), CHarbor(), CTrainStation(), CShoppingMall(), CAmusementPark(), CRadioTower(), CAirport()]
 
 def getLandmarkDeck():
@@ -142,20 +142,20 @@ def _listDeck(iFilterType:str, lst, lst2 = None):
 	#TODO: Remove iteration by index
 	#TODO: Add ID to gamecards
 	elif(iFilterType[0] == '0'):
-		for i in range(len(lst)):
-			if(lst[i].m_iType == CARD_TYPE_GAMECARD):
-				printe("%2d:%s %s;%sActivation:%2d-%d,%sCost:%2d, Type:%s, Description: %s" % 
-					(i+1, 
-					('' if (lst2 is None) else " (built)  " if (isCardInList(lst[i], lst2)) else " (unbuilt)"),
-					lst[i].m_sName, ' '*(27-len(lst[i].m_sName)), lst[i].m_lDiceRoll[0], lst[i].m_lDiceRoll[1],
+		for o in lst:
+			if(o.m_iType == CARD_TYPE_GAMECARD):
+				printe("%2d:%s %s;%sActivation:%2d-%d;%sCost:%2d; Type:%s, %s; Description: %s" % 
+					(o.m_iID+1, 
+					('' if (lst2 is None) else " (built)  " if (isCardInList(o, lst2)) else " (unbuilt)"),
+					o.m_sName, ' '*(27-len(o.m_sName)), o.m_lDiceRoll[0], o.m_lDiceRoll[1],
 					#now THIS is a kludge. convert number to a string and then calculate it's length
-					" "*len(str(lst[i].m_lDiceRoll[1])), 
-					lst[i].m_iPrice, lst[i].typeToStr(), lst[i].m_sShortDesc), MEVENT_GAMECARD)
-			elif(lst[i].m_iType == CARD_TYPE_LANDMARK):
+					" "*len(str(o.m_lDiceRoll[1])), 
+					o.m_iPrice, o.typeToStr(), o.m_sCategory, o.m_sShortDesc), MEVENT_GAMECARD)
+			elif(o.m_iType == CARD_TYPE_LANDMARK):
 				printe("%2d:%s %s;%sCost:%2d, Description: %s" % 
-					(lst[i].m_iID+1, 
-					('' if (lst2 is None) else " (built)  " if (isCardInList(lst[i], lst2)) else " (unbuilt)"),
-					lst[i].m_sName, ' '*(16-len(lst[i].m_sName)), lst[i].m_iPrice, lst[i].m_sShortDesc), MEVENT_LANDMARK)
+					(o.m_iID+1, 
+					('' if (lst2 is None) else " (built)  " if (isCardInList(o, lst2)) else " (unbuilt)"),
+					o.m_sName, ' '*(16-len(o.m_sName)), o.m_iPrice, o.m_sShortDesc), MEVENT_LANDMARK)
 		
 	else:
 		return False #fail, type didn't match

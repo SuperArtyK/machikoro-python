@@ -16,7 +16,7 @@ LANDMARK_ID_AIRPORT = 6
 class CLandmark(Card):
 	def __init__(self, l_sname, l_sdesc, l_bHarborExpansion, l_iPrice, l_sShortDesc, l_iID):
 		#idk how to use max limit of 5 cards, player discards 2nd same landmark anyway.
-		super().__init__(l_sname, l_sdesc, CARD_TYPE_LANDMARK, l_bHarborExpansion, 5, l_iPrice, l_sShortDesc, l_iID)
+		super().__init__(l_sname, l_sdesc, CARD_TYPE_LANDMARK, l_bHarborExpansion, l_iPrice, l_sShortDesc, l_iID)
 		printd("Creating CLandmark() ->  %s" % (l_sname))
 
 	def __str__(self):

@@ -15,7 +15,7 @@ print('\n')
 g_iPlayerWon = 0
 
 
-tmp = [CCityHall(), CHarbor(), CTrainStation(), CShoppingMall(), CAmusementPark(), CRadioTower(), CAirport()]
+tmp = getLandmarkDeck()
 for o in tmp:
 	printe(o)
 	print('\n')
@@ -33,6 +33,6 @@ card.cardAction(plr)
 print('\n')
 
 #print(plr.hasCard(getLandmarkDeck()[0]))
-plr.listCards(6)
+plr.listCards(2)
 print('-----------------')
 #listDeck(None, '40')

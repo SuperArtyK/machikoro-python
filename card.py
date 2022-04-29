@@ -10,14 +10,13 @@ CARD_TYPE_ID = 0
 #base class of all game cards
 class Card:
 	#self, card name, card description, card execution type, execution dice roll, is card from advanced set
-	def __init__(self, l_sname, l_sdesc, l_itype, l_bHarborExpansion, l_iMaxAmount, l_iPrice, l_sShortDesc, l_iID):
+	def __init__(self, l_sname, l_sdesc, l_itype, l_bHarborExpansion, l_iPrice, l_sShortDesc, l_iID):
 		printd("Creating Card() ->  %s" % (l_sname))
 		self.m_sName = l_sname
 		self.m_sDesc = l_sdesc
 		self.m_iType = l_itype
 		self.m_bHarborExpansion = l_bHarborExpansion
 		self.m_iAmount = 1
-		self.m_iMaxAmount = l_iMaxAmount
 		self.m_iPrice = l_iPrice
 		self.m_sShortDesc = l_sShortDesc
 		self.m_iID = l_iID
